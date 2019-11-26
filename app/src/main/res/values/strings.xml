@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">popular people</string>
+    <string name="api_key">14c57781e6109693571817381184b891</string>
+    <string name="no_connection">No Internet Connection !</string>
+    <string name="image_path">http://image.tmdb.org/t/p/w300/</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="all_photos">All Photos</string>
+
+    <string name="title_activity_fullscreen">Fullscreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
