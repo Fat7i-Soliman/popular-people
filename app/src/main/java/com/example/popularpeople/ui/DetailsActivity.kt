@@ -3,19 +3,16 @@ package com.example.popularpeople.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularpeople.R
 import com.example.popularpeople.adapters.PicsAdapter
 import com.example.popularpeople.databinding.ActivityDetailsBinding
 import com.example.popularpeople.viewModel.DetailsViewModel
 import com.example.popularpeople.viewModel.DetailsViewModelFactory
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_biography.view.*
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -33,9 +30,7 @@ class DetailsActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         id = intent.extras?.getInt("id")
-//        if (id==null){
-//            id=savedInstanceState!!.getInt("Current_id")
-//        }
+
         factory = DetailsViewModelFactory(id!!)
         viewModel = ViewModelProviders.of(this,factory)[DetailsViewModel::class.java]
         binding.picsRecycler.layoutManager = GridLayoutManager(this,4)

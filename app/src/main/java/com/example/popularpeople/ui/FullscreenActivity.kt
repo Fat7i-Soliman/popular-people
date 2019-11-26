@@ -15,6 +15,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import android.graphics.drawable.Drawable
+import android.media.MediaScannerConnection
 import android.os.Environment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -229,8 +230,7 @@ class FullscreenActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"saved",Toast.LENGTH_SHORT).show()
                         Log.e("IOException", "saved")
                         progress.dismiss()
-
-
+                        MediaScannerConnection.scanFile(applicationContext,Array(1){file.toString()}, null, null)
                     } catch (e: IOException) {
                         Log.e("IOException", e.localizedMessage)
                         progress.dismiss()

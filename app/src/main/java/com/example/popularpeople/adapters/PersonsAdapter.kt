@@ -15,10 +15,10 @@ import com.squareup.picasso.Picasso
 
 class PersonsAdapter() : RecyclerView.Adapter<PersonViewHolder>(){
     private lateinit var  path :String
-    var list: List<Person>? = null
+    var list: MutableList<Person>? = null
     private lateinit var context: Context
 
-    constructor(list: List<Person>,context: Context):this(){
+    constructor(list: MutableList<Person>?,context: Context):this(){
         this.list= list
         this.context=context
         path=context.getString(R.string.image_path)
@@ -33,12 +33,14 @@ class PersonsAdapter() : RecyclerView.Adapter<PersonViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-        val person = list!![position]
-        holder.name.text = person.name
+        if (list!=null){
+            val person = list!![position]
+            holder.name.text = person.name
 
-        Picasso.get().load("$path${person.profile_path}").placeholder(R.drawable.blankguy).into(holder.image)
-        holder.itemView.setOnClickListener {
-            sentIntent(person.id)
+            Picasso.get().load("$path${person.profile_path}").placeholder(R.drawable.blankguy).into(holder.image)
+            holder.itemView.setOnClickListener {
+                sentIntent(person.id)
+            }
         }
     }
 
@@ -48,6 +50,10 @@ class PersonsAdapter() : RecyclerView.Adapter<PersonViewHolder>(){
         context.startActivity(intent)
     }
 
+    fun addMore(newlist:MutableList<Person>){
+        list!!.addAll(newlist)
+        notifyDataSetChanged()
+    }
 }
 
 class PersonViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
