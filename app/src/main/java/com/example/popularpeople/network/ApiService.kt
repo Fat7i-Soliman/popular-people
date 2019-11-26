@@ -41,7 +41,7 @@ interface ApiService{
     fun getPhotos(@Path("id") id:Int, @Query("api_key") key:String): Call<ObjectPics>
 
     @GET("search/person")
-    fun getSearch(@Query("query") txt:String, @Query("api_key") key:String): Call<Root>
+    fun getSearch( @Query("api_key") key:String , @Query("query") txt:String,@Query("page") page:Int) : Call<Root>
 }
 
 object MovieApi{

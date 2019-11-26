@@ -15,8 +15,6 @@ class MainPageViewModel :ViewModel(){
 
     private val api_key = "14c57781e6109693571817381184b891"
     private var _root=MutableLiveData<Root>()
-    val root : LiveData<Root>
-    get() = _root
 
     private var _persons=MutableLiveData<List<Person>>()
     val persons : LiveData<List<Person>>

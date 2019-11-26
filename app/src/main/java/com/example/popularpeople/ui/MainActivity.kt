@@ -1,8 +1,11 @@
 package com.example.popularpeople.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -46,7 +49,32 @@ class MainActivity : AppCompatActivity() {
             binding.emptyText.text = getString(R.string.no_connection)
         }
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search,menu)
+        val searchView = menu!!.findItem(R.id.search).actionView as SearchView
+        searchView.queryHint="Find artist"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                if (p0!=null&&p0.isNotEmpty()){
+                    sendToResults(p0)
+                }
+                return true
+            }
 
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    fun sendToResults(query:String){
+        val intent = Intent(this,ResultActivity::class.java)
+        intent.putExtra("Query",query)
+        startActivity(intent)
     }
 }
